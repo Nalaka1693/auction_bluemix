@@ -35,7 +35,7 @@ $(document).on('click','.editBtn',function (d){
 	var obj = {"auction_id":aid};
     //update form
 	$.ajax({
-		url : "http://127.0.0.1:6002/auctions/edit",
+		url : "https://mas-auction.mybluemix.net/auctions/edit",
 		type : "POST",
 		dataType : "json",
 		data : obj,
@@ -94,7 +94,7 @@ $(document).on('click','.bidBtn',function (d){
 	$("#bids").html("");
 	$("#bid-header").text(bidname+" : "+biduid);
 	$.ajax({
-		url : "http://127.0.0.1:6002/items/aucitems",
+		url : "https://mas-auction.mybluemix.net/items/aucitems",
 		type : "POST",
 		data : obj,
 		dataType : "json",
@@ -122,7 +122,7 @@ $(document).on('click','.ongoing-btn',function(d){
 	var uid = this.lastElementChild.innerHTML;
 	var obj = {"auction_id":uid};
 	$.ajax({
-		url: "http://127.0.0.1:6002/auctions/ongoing",
+		url: "https://mas-auction.mybluemix.net/auctions/ongoing",
 		data: obj,
 		dataType: 'json',
 		type: 'post',
@@ -183,12 +183,12 @@ $("#bid-min-conf").click(function (d){
 $("#win-conf-auc-btn").click(function (d){
 	if(newaucenabled){
 		var obj= createJSON();
-		var path = "http://127.0.0.1:6002/auctions/new";
+		var path = "https://mas-auction.mybluemix.net/auctions/new";
 		sendDatabyPost(path,obj,"New Auction Added");
 	}
 	else{
 		var obj = createJSON();
-		var path = "http://127.0.0.1:6002/auctions/edit/confirm";
+		var path = "https://mas-auction.mybluemix.net/auctions/edit/confirm";
 		sendDatabyPost(path,obj,"Auction Status Changed");
 	}
 });
@@ -219,14 +219,14 @@ $("#bid-min-close").click(function (d){
 $("#del-auc-btn").click(function(d) {
     //ajax to del
 	var json = { "auction_id" : deluid };
-    var path = "http://127.0.0.1:6002/auctions/del"; //give path
+    var path = "https://mas-auction.mybluemix.net/auctions/del"; //give path
     $.ajax({
         url : path,
         dataType: "json",
         data : json,
         type : "POST",
         success:function(data,textStatus,jqXHR){
-            sendDatatoUpdate({},"http://127.0.0.1:6002/auctions/initial");
+            sendDatatoUpdate({},"https://mas-auction.mybluemix.net/auctions/initial");
         }
     })
 });
@@ -362,7 +362,7 @@ function updatebids(){
 	var obj = {"auction_id":uid};
 	var id,name,bidval;
 	$.ajax({
-		url: "http://127.0.0.1:6002/bids/getlatest",
+		url: "https://mas-auction.mybluemix.net/bids/getlatest",
 		type: 'POST',
 		data : obj,
 		dataType : 'json',
@@ -555,7 +555,7 @@ function tablerefresh(){
 		//send ajax
 
 		$.ajax({
-			url : "http://127.0.0.1:6002/auctions/edit",
+			url : "https://mas-auction.mybluemix.net/auctions/edit",
 			type : "POST",
 			dataType : "json",
 			data : obj,
@@ -616,7 +616,7 @@ function sendDatabyPost(path,json,successmsg){
         dataType : 'json',
         data : json,
         success:function(data,textStatus,jqXHR){
-			sendDatatoUpdate({},"http://127.0.0.1:6002/auctions/initial");
+			sendDatatoUpdate({},"https://mas-auction.mybluemix.net/auctions/initial");
         },
         fail:function(jqXHR,textStatus,errorThrown){
            
@@ -627,7 +627,7 @@ function sendDatabyPost(path,json,successmsg){
 // send data to update onogoing panel
 function sendDataOngoing(){
 	$.ajax({
-		url : "http://127.0.0.1:6002/auctions/current",
+		url : "https://mas-auction.mybluemix.net/auctions/current",
 		type : "GET",
 		dataType : 'json',
 		success : function(data, textStatus, jqXHR){
@@ -670,7 +670,7 @@ window.onload = function(){
 //	$("#start-time").timepicker();
 //	$("#end-time").timepicker();
 	tablerefresh();
-	sendDatatoUpdate({},"http://127.0.0.1:6002/auctions/initial");
+	sendDatatoUpdate({},"https://mas-auction.mybluemix.net/auctions/initial");
 }
 
 
@@ -689,7 +689,7 @@ $(document).ready(function (d){
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		prefetch : {
-			url : "http://127.0.0.1:6002/users/vendorlist",
+			url : "https://mas-auction.mybluemix.net/users/vendorlist",
 			filter : function(data){
 				return $.map(data,function(vennames){
 					return { 'name' : vennames.fname+" "+vennames.lname+"-"+vennames.user_id }
@@ -704,7 +704,7 @@ $(document).ready(function (d){
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		prefetch : {
-			url : "http://127.0.0.1:6002/items/itemlist",
+			url : "https://mas-auction.mybluemix.net/items/itemlist",
 			filter : function(data){
 				return $.map(data,function(items){
 					return {'name': items.item_name+"-"+items.item_id}

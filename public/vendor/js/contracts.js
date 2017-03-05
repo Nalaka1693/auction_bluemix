@@ -16,7 +16,7 @@ var contracts;
 */
 function loadContracts() {
     $.ajax({
-        url: "https://mas-auction.myblumix.net/auctions/initial",
+        url: "https://mas-auction.mybluemix.net/auctions/initial",
         type: "GET",
         data: "json",
         success:function (data,textStatus,jqXHR) {

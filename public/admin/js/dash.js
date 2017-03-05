@@ -6,7 +6,7 @@ var vendor_count, p_auctions;
 
 function getVendors(){
 	$.ajax({
-		url: "http://127.0.0.1:6002/users/vendor/count",
+		url: "https://mas-auction.mybluemix.net/users/vendor/count",
 		type: "GET",
 		dataType :"json",
 		success : function(data,textStatus,jqXHR){
@@ -20,7 +20,7 @@ function getVendors(){
 
 function getAuctions(){
 	$.ajax({
-		url: "http://127.0.0.1:6002/auctions/count",
+		url: "https://mas-auction.mybluemix.net/auctions/count",
 		type: "GET",
 		dataType :"json",
 		success : function(data,textStatus,jqXHR){

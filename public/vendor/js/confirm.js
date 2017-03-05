@@ -3,7 +3,7 @@
  */
 
 // var send_auctionID = this.parentNode.parentNode.firstChild.firstChild.childNodes[1].firstChild.firstChild.nodeValue;
-var send_vendorID ="VEN_ID";
+var send_vendorID ="levi_1234";
 var send_itemID =[];
 var send_bidVALUE =[];
 
@@ -11,7 +11,7 @@ function send_data(data) {
     $("#modal").html("");
 
     $.ajax({
-        url: "https://mas-auction.myblumix.net/bids/add/confirm",
+        url: "https://mas-auction.mybluemix.net/bids/add/confirm",
         type: "POST",
         dataType: "json",
         data : data,

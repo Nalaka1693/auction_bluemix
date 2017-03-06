@@ -26,7 +26,8 @@ router.post('/add', function(req, res, next) {
         }
 
         // SQL Query > Insert Data
-        var query = client.query("SELECT item_id, MIN(bid_amount) FROM bid WHERE auction_id=($1) GROUP BY item_id", [data.auc_id]);
+        var query = client.query("SELECT bid.item_id, items.item_name, MIN(bid.bid_amount) FROM bid " +
+            "INNER JOIN items ON bid.item_id=items.item_id where bid.auction_id=($1) group by items.item_id, bid.item_id;", [data.auc_id]);
 
         // Stream results back one row at a time
         query.on('row', function(row) {
@@ -41,8 +42,6 @@ router.post('/add', function(req, res, next) {
         });
     });
 });
-
-
 
 router.post('/getlatest', function(req, res, next) {
     const results = [];
@@ -81,6 +80,74 @@ router.post('/getlatest', function(req, res, next) {
     });
 });
 
+router.post('/historyad', function(req, res, next) {
+    const results = [];
+    // Get a Postgres client from the connection pool
+    const data = {
+        auc_id: req.body.auction_id,
+        item_id: req.body.item_id
+    };
+
+    console.log(data);
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+        if(err) {
+            done();
+            console.log(err);
+            return res.status(500).json({success: false, data: err});
+        }
+
+        // SQL Query > Insert Data
+        var query = client.query("SELECT bid_id,vendor_id,time,bid_amount FROM bid WHERE auction_id=($1) AND item_id=($2)",
+            [data.auc_id,data.item_id]);
+
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            //console.log(results);
+            return res.json(results);
+        });
+    });
+});
+
+router.post('/bidbyauction', function(req, res, next) {
+    const results = [];
+    // Get a Postgres client from the connection pool
+    const data = {
+        auc_id: req.body.auction_id,
+    };
+
+    console.log(data);
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+        if(err) {
+            done();
+            console.log(err);
+            return res.status(500).json({success: false, data: err});
+        }
+
+        // SQL Query > Insert Data
+        var query = client.query("SELECT bid_id,vendor_id,time,bid_amount,item_id FROM bid WHERE auction_id=($1)",
+            [data.auc_id]);
+
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            //console.log(results);
+            return res.json(results);
+        });
+    });
+});
 
 router.get('/test', function(req, res, next) {
     const results = [];
@@ -110,9 +177,6 @@ router.get('/test', function(req, res, next) {
         });
     });
 });
-
-
-
 
 router.post('/add/confirm', function(req, res, next) {
     const results = [];
@@ -154,12 +218,9 @@ router.post('/add/confirm', function(req, res, next) {
     });
 });
 
-router.post('/history', function(req, res, next) {
+router.get('/history', function(req, res, next) {
     const results = [];
     // Get a Postgres client from the connection pool
-    const data = {
-        auc_id: req.body.auction_id
-    };
 
     pg.connect(connectionString, function(err, client, done) {
         // Handle connection errors
@@ -170,7 +231,7 @@ router.post('/history', function(req, res, next) {
         }
 
         // SQL Query > Insert Data
-        var query = client.query("SELECT item_id, bid_amount FROM bid GROUP BY vendor_id, time LIMIT 20");
+        var query = client.query("SELECT * FROM bid ORDER BY bid_id DESC");
 
         // Stream results back one row at a time
         query.on('row', function(row) {

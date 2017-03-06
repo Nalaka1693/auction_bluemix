@@ -143,7 +143,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><div id="username"></div> <b class="caret"></b></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -548,6 +548,10 @@
                 </div>
             </div>    
         </div>
+		
+		
+		
+		
 
     	 <!--  Bid panal  -->
         <div id="bid-view-modal" class="modal fade" role="dialog">
@@ -597,11 +601,57 @@
                 </div>
             </div>    
         </div>
+		
+		
+		
+		
+		
+		 <!--  Bid History  -->
+        <div id="bid-history-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                
+            <!--   modal content   -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!--    cross button   -->
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="bid-history-header">Bid History</h4>
+                    </div>
+                    <div class="modal-body" id="bid-histoy-tables">
+                        <div class="row" id="bids">
+                            <div class="col-lg-12">
+                                <div class="panel panel-primary">
+									<div class="panel-heading">
+										<div class="row">
+											<div class="col-lg-1"></div>
+											<div class="col-lg-9 text-left">
+												<div id="vcount">Item ID and name</div>
+											</div>
+										</div>
+									</div>
+									<div class="panel body">
+										<div class="row">
+											<div class="col-lg-12">
+												panal body
+											</div>
+										</div>
+									</div>
+                        		</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>    
+        </div>
 
 		
 		
 		
-		 <!--  Add bid val panel  -->
+		 <!--  Add bid val panel in new auction -->
         <div id="add-bid-min-modal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 
@@ -643,6 +693,81 @@
             </div>    
         </div>
         
+		
+		 <!--  Analyze bids  -->
+        <div id="analyze-bid-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                
+            <!--   modal content   -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!--    cross button   -->
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="analyze-bids-header">Analyze bids</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" id="bids">
+                            <div class="col-lg-12">
+								<div id="myCarousel" class="carousel slide" data-ride="carousel">
+									<!-- Carousel indicators -->
+									<ol class="carousel-indicators">
+										<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+										<li data-target="#myCarousel" data-slide-to="1"></li>
+										<li data-target="#myCarousel" data-slide-to="2"></li>
+									</ol>
+									
+									
+									<!-- Wrapper for slides -->
+									<div class="carousel-inner" role="listbox">
+
+										<div class="item">
+										   <div class="row">
+												<div class="col-lg-12">
+													<div id="piechart" ></div>
+												</div>
+											</div>
+										</div>
+
+										<div class="item">
+											<div class="row">
+												<div class="col-lg-12">
+													<div id="columnChart" ></div>
+												</div>
+											</div>
+										</div>
+										<div class="item active">
+										  	<div class="row">
+												<div class="col-lg-12">
+													<div id="lineChart" ></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									  <!-- Left and right controls -->
+									<div class="row">
+										<div class="col-lg-12">
+											<a class = "pull-left" href = "#myCarousel" data-slide = "prev">
+												<i class="fa fa-chevron-left fa-3x" aria-hidden="true"></i>
+											</a>
+											<a class = "pull-right" href = "#myCarousel" data-slide = "next">
+												<i class="fa fa-chevron-right fa-3x" aria-hidden="true"></i>
+											</a>
+										</div>
+									</div>
+									
+                              	
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>    
+        </div>
 
 
     </div>
@@ -661,6 +786,12 @@
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js"></script>
 	<script src="https://mas-auction.mybluemix.net/admin/js/bootstrap-datepicker.js"></script>
+	<script src="https://mas-auction.mybluemix.net/admin/js/underscore-min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+     google.charts.load('current', {packages: ['corechart','line']});  
+   	</script>
+	<script src="https://mas-auction.mybluemix.net/admin/js/charts.js"></script>
   
  
         

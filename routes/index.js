@@ -4,7 +4,7 @@ var router = express.Router();
 
 var exp = 'New Express';
 var test = 'New Test';
-var flink = 'http://localhost:3000/';
+var flink = 'https://mas-auction.mybluemix.net/';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

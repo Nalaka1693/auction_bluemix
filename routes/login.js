@@ -34,7 +34,7 @@ router.post('/logpost', function(req, res, next) {
             console.log(results);
             // return res.json(results[0].password);
             if (results.length == 0) {
-                return res.redirect('http://localhost:3000/');
+                return res.redirect('https://mas-auction.mybluemix.net/');
             }
 
             if (data.passwd == results[0].password) {
@@ -45,7 +45,7 @@ router.post('/logpost', function(req, res, next) {
                 }
                 req.session.userID =req.body.uname;
             } else {
-                return res.redirect('http://localhost:3000/');
+                return res.redirect('https://mas-auction.mybluemix.net/');
             }
         });
     });

@@ -9,7 +9,7 @@ function loadlinechart(aucid,count){
 	//load data item ids
 	$.ajax({
 		async : false,
-		url : "http://localhost:3000/auctions/edit",
+		url : "https://mas-auction.mybluemix.net/auctions/edit",
 		type : "POST",
 		dataType : "json",
 		data : obj,
@@ -21,7 +21,7 @@ function loadlinechart(aucid,count){
 	});
 	$.ajax({
 		async : false,
-		url : "http://localhost:3000/bids/bidbyauction",
+		url : "https://mas-auction.mybluemix.net/bids/bidbyauction",
 		type : "POST",
 		dataType : "json",
 		data : obj,

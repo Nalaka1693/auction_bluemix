@@ -11,7 +11,7 @@ function send_data(data) {
     $("#modal").html("");
 
     $.ajax({
-        url: "http://localhost:3000/bids/add/confirm",
+        url: "https://mas-auction.mybluemix.net/bids/add/confirm",
         type: "POST",
         dataType: "json",
         data : data,

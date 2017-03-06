@@ -5,7 +5,7 @@ var hist;
 
 function loadHistory() {
     $.ajax({
-        url: "http://localhost:3000/bids/history",
+        url: "https://mas-auction.mybluemix.net/bids/history",
         type: "GET",
         data: "json",
         success:function (data,textStatus,jqXHR) {

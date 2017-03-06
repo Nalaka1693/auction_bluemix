@@ -13,6 +13,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var Promise = require('es6-promise').Promise;
 var cors = require('cors');
+var session = require("client-sessions");
 
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
@@ -37,6 +38,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'routes')));
+app.use(session({
+    cookieName: 'session',
+    secret: 'qwertyui12345678',
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000
+}));
 app.use(cors());
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');

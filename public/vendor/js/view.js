@@ -7,7 +7,7 @@ function loadViewModalData(data) {
     $("#view").html("");
 
     $.ajax({
-        url: "https://mas-auction.mybluemix.net/auctions/edit",
+        url: "http://localhost:3000/auctions/edit",
         type: "POST",
         dataType: "json",
         data: data,

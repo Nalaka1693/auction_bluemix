@@ -8,12 +8,14 @@
 	"dependencies": {
 		"express": "4.13.x",
 		"cfenv": "1.0.x",
+		"client-sessions": "^0.7.0",
 		"body-parser": "~1.16.0",
 		"cookie-parser": "~1.4.3",
 		"debug": "~2.6.0",
 		"ejs": "~2.5.5",
 		"morgan": "~1.7.0",
 		"pg": "~6.1.2",
+		"express-session": "^1.15.1",
 		"cors": "~2.8.1",
 		"es6-promise": "~4.0.5"
 	},

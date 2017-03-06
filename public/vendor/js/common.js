@@ -6,7 +6,7 @@ function loadModalData(data) {
     $("#modal").html("");
 
     $.ajax({
-        url:"https://mas-auction.mybluemix.net/bids/add",
+        url:"http://localhost:3000/bids/add",
         type: "POST",
         dataType: "json",
         data : data,

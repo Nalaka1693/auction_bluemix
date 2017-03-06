@@ -34,7 +34,7 @@ router.post('/logpost', function(req, res, next) {
             console.log(results);
             // return res.json(results[0].password);
             if (results.length == 0) {
-                return res.redirect('https://mas-auction.mybluemix.net/');
+                return res.redirect('http://localhost:3000/');
             }
 
             if (data.passwd == results[0].password) {
@@ -43,8 +43,9 @@ router.post('/logpost', function(req, res, next) {
                 } else if (results[0].role.toUpperCase() == 'VENDOR') {
                     res.sendFile(__dirname + '/vendor_pages/index.html');
                 }
+                req.session.userID =req.body.uname;
             } else {
-                return res.redirect('https://mas-auction.mybluemix.net/');
+                return res.redirect('http://localhost:3000/');
             }
         });
     });
